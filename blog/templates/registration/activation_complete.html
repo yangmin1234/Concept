@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Account activation complete{% endblock %}
+{% block body_class %}{{ block.super }} registration_activation_complete{% endblock %}
+
+
+{% block content_title %}
+  <h3>Account activation complete</h3>
+{% endblock %}
+
+{% block main_content %}
+    
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('{% static "img/contact-bg.jpg" %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Welcome</h1>
+                        <hr class="small">
+                        <span class="subheading">We are glad that you are joining.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div class="formBlock">
+  <p style="font-size: 16px;">Congratulations, your account with Jacque's Words has been activated.</p>
+  <p style="font-size: 16px;">You're ready to <a href="https://jacqueswords.herokuapp.com/accounts/login/">Log In</a>.</p>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}
+

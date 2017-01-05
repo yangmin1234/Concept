@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% load staticfiles %} {% load crispy_forms_tags %} {% block main_content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static 'img/contact-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Contact Me</h1>
+                    <hr class="small">
+                    <span class="subheading">Have questions? I have answers (maybe).</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p><h2 align="center">Want to get in touch with me?</h2> <br> Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+            <form action="" method="post">
+                {% csrf_token %} {{contact_form|crispy}} <br>
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <input class="btn btn-default btn-block" type="submit" value="Send" />
+                </div>
+                <div class="col-md-3"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr> {% endblock main_content %}

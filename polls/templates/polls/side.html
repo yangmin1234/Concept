@@ -1,0 +1,13 @@
+
+				<p><b>Choose a question to vote upon: </b></p>
+                {% if questions_polls %}
+                <ol>
+                    {% for question in questions_polls reversed%}
+                    <li>
+                        <a href="{% url "polls:detail" question.id %}">{{question.question_text}}</a>
+                    </li>
+                    {% endfor %}
+                </ol>
+                {#<p>Feel free to add some <a href="{% url " polls:questions_add " %}">here</a>. </p> #} {% else %}
+                <p>We don't have any questions as of now.</p>
+                {#<p>Feel free to add some <a href="{% url " polls:questions_add " %}">here</a>. </p> #} {% endif %} 

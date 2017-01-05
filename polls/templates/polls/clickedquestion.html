@@ -1,0 +1,11 @@
+<p>Choose one of the options to vote: </p>
+<ul>
+        {% for question in questions_polls reversed%}
+        <li>
+            <a href="{% url " polls:detail " %}">{{question.id}}. {{question.question_text}}</a>
+        </li>
+        {% endfor %}
+</ul>
+    
+<p>Feel free to add some <a href="{% url " polls:questions_add " %}">here</a>. </p>
+

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block main_content %}
+
+<!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('{% static "img/about-bg.jpg" %}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>Results</h1>
+                        <hr class="small">
+                        <span class="subheading">The people have spoken!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+			<h1 align="center">{{question.question_text}}</h1>
+			<br>
+			
+			{% if error_message %}
+				<p><strong>{{error_message}}</strong></p>
+			{% endif %}
+
+			<form>
+				{% csrf_token %}
+				
+				<ol>
+					{% for choice in question.choice_set.all %}
+						<li>
+						{{choice.choice_text}} &rarr; {{choice.votes}} vote{{choice.vote|pluralize}}
+						</li>
+						<hr>
+					{% endfor %}
+				</ol>
+				<div align="center">
+					<a href="{% url "polls:detail" question.id %}"><button type="button" class="btn btn-default">Vote Again</button></a>
+				</div>
+			</form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock main_content %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+    
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static "img/home-bg.jpg" %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Jacque's Words</h1>
+                    <hr class="small">
+                    <span class="subheading">We all have some wisdom. But what is it?</span>
+                </div>
+            </div>
+    </div>
+        </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            
+        {% for article in posts %}
+            <div class="post-preview">
+                <a href="{{article.get_absolute_url}}">
+                    <h2 class="post-title">
+                        {{article.title}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{article.subtitle}}
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by <a href="#">{{article.author}}</a> on {{article.date_added}}</p>
+            </div>
+            <hr>
+
+        {% endfor %}              
+            
+        <div class="pagination">
+<span class="step-links">
+    {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+    {% endif %}
+
+    <span class="current">
+        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+    </span>
+
+    {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+    {% endif %}
+</span>
+</div>
+
+            <!-- Pager -->
+            <ul class="pager">
+                {% if user.is_authenticated %}
+                    <li class="previous">
+                        <a href="{% url "makepost" %}">Make a Post</a>
+                    </li>
+                {% endif %}
+                 <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+                
+            </ul>
+
+        </div>
+        <div class="col-md-4">
+            <h2>{{ title }}</h2>
+              
+            <div class="row">
+                <form method="GET" action="">
+                    <div class="input-group">
+                        <input id="home_search" style="height: 52px;" class="form-control" type="text" name='q' placeholder="Search posts" value="{{ request.get.q }}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="text">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <br>
+
+            {% include "polls/side.html" %}
+            
+        </div>
+    </div>
+
+</div>
+
+{% endblock main_content %}
+
+

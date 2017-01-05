@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load staticfiles %} {% load crispy_forms_tags %} {% block title %}Register for an account{% endblock %} {% block body_class %}{{ block.super }} registration_form{% endblock %} {% block content_title %}
+<h2>Register for an account</h2> {% endblock %} {% block main_content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static 'img/together.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Welcome</h1>
+                        <hr class="small">
+                        <span class="subheading">We are glad that you are joining.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-md-2"></div>
+            <div class="formBlock col-md-8 text-center">
+                <form action="{% url 'registration_register' %}" method="post">{% csrf_token %}
+                    <h3>Registration</h3>
+                    <br> {{ form|crispy }}
+                    <p class="submit">
+                        <button type="submit" class="updateButton btn btn-default btn-block">Register</button>
+                    </p>
+                </form>
+                <p>or</p>
+                <div class="formInstructions">
+                    <h3>Please Read</h3>
+                    <div class="formInstructionContainer">
+                        <h4>Why should I Register?</h4>
+                        <p>In order to submit posts you need to be registered. This can lead to substantial exposure to your opinion or content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr> {% endblock %}

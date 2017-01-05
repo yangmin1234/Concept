@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% load staticfiles %} {% load crispy_forms_tags %} {% block main_content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static 'img/contact-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Successful</h1>
+                    <hr class="small">
+                    <span class="subheading">Your message has been sent.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <h3 align="center">Successful</h3>
+            <h2 align="center">Your message has been sent</h2>
+            <br>
+            <p align="right">Go back to the <a href="{% url '' %}">homepage</a> &rarr;</p>
+        </div>
+    </div>
+</div>
+<hr> {% endblock main_content %}

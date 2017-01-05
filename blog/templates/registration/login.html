@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load staticfiles %} {% load crispy_forms_tags %}{% load i18n %} {% block title %}Log into your account{% endblock %} {% block body_class %}{{ block.super }} login{% endblock %} {% block content_title %}
+<h2>Log into your account</h2> {% endblock %} {% block main_content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{% static 'img/together.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="page-heading">
+                    <h1>Welcome</h1>
+                        <hr class="small">
+                        <span class="subheading">Feel free to log in.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-md-2"></div>
+            <div class="formBlock col-md-8 text-center">
+                <h3>Welcome Back</h3>
+                <form method="post" action=".">{% csrf_token %} {{ form|crispy }}
+                    <input type="submit" value="{% trans 'Log in' %}" class="updateButton btn btn-default btn-block"  />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+                <p style="font-size: 20px;">{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr> {% endblock %}

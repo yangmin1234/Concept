@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% load staticfiles %} {% block main_content %}
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('{{ article.image }}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>{{ article.title }}</h1>
+                    <h2 class="subheading">{{ article.subtitle }}</h2>
+                    <span class="meta">Posted by <a href="#">{{ article.author }}</a> on {{  article.date_added }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {{ article.article|safe }}
+                <hr>
+                <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                
+                <br>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <button id="comments_button" class="btn btn-default btn-block">Show Comments</button>
+                    </div>
+                    {% if user.username == article.author %}
+                    <div class="col-md-4">
+                        <a href="{% url 'updatepost' article.slug %}">
+                            <input class="btn btn-default btn-block" type="submit" value="Change Post" />
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{% url 'deletepost' article.slug %}">
+                            <input class="btn btn-default btn-block" type="submit" value="Delete Post" />
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div align="center">
+                    <div id="comments_wrapper" style="text-align: center">
+                        <hr>
+                        <div id="facebook_comments" class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+<hr> {% endblock main_content %}
