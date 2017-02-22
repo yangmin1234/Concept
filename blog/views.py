@@ -165,3 +165,6 @@ class blog_sitemap(Sitemap):
 	lastmod = datetime.datetime.now()
 	def items(self):
 		return Blog.objects.all()
+
+
+# file change
